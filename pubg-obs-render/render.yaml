@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: pubg-obs-tracker
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: HOST
+        value: 0.0.0.0
+      - key: PUBG_USE_MOCK
+        value: "0"
+      - key: PUBG_API_KEY
+        sync: false

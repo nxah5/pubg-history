@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PUBG OBS Tracker</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <div class="product">PUBG OBS Tracker</div>
+        <div class="statusline" id="healthBadge">서버 확인 중</div>
+      </div>
+      <div class="overlay-links" id="overlayLinks"></div>
+    </header>
+
+    <main class="layout">
+      <section class="panel selected-panel">
+        <div class="panel-head">
+          <div>
+            <h1>출력 플레이어</h1>
+            <p id="selectedCount">0 / 12</p>
+          </div>
+          <div class="session-actions">
+            <div class="segmented" id="modeTabs" role="tablist" aria-label="출력 형태">
+              <button class="active" type="button" data-mode="normal">일반</button>
+              <button type="button" data-mode="ranked">경쟁전</button>
+              <button type="button" data-mode="custom">사용자지정</button>
+            </div>
+            <button id="startSession" type="button">기록 시작</button>
+            <button id="refreshSession" type="button">새 매치 갱신</button>
+            <button id="resetSession" type="button" class="ghost">초기화</button>
+          </div>
+        </div>
+        <div class="selected-grid" id="selectedPlayers"></div>
+        <div class="session-summary" id="sessionSummary"></div>
+      </section>
+
+      <section class="panel lookup-panel">
+        <div class="panel-head">
+          <div>
+            <h2>데이터 입력</h2>
+            <p>서버와 닉네임</p>
+          </div>
+        </div>
+        <form class="settings-form" id="apiForm">
+          <label class="api-key-field">
+            API 키
+            <input id="apiKey" type="password" autocomplete="off" placeholder="PUBG API 키">
+          </label>
+          <label class="toggle-field">
+            <input id="useMock" type="checkbox">
+            <span>샘플 데이터</span>
+          </label>
+          <button type="submit">API 저장</button>
+        </form>
+        <div class="notice" id="apiStatus"></div>
+        <form class="lookup-form" id="searchForm">
+          <label>
+            서버
+            <select id="platform">
+              <option value="steam">Steam</option>
+              <option value="kakao">Kakao</option>
+              <option value="console">Console</option>
+              <option value="psn">PSN</option>
+              <option value="xbox">Xbox</option>
+              <option value="tournament">Tournament</option>
+            </select>
+          </label>
+          <label>
+            닉네임
+            <input id="playerName" name="playerName" autocomplete="off" placeholder="플레이어 닉네임">
+          </label>
+          <button type="submit">검색</button>
+        </form>
+        <div class="notice" id="statusBox"></div>
+      </section>
+
+      <section class="panel matches-panel">
+        <div class="panel-head">
+          <div>
+            <h2>최근 매치</h2>
+            <p id="searchMeta">검색 대기</p>
+          </div>
+        </div>
+        <div class="match-list" id="matchesList"></div>
+      </section>
+
+      <section class="panel detail-panel">
+        <div class="panel-head">
+          <div>
+            <h2>매치 상세</h2>
+            <p id="matchMeta">매치를 선택하세요</p>
+          </div>
+        </div>
+        <div id="matchDetail" class="match-detail empty-state">선택된 매치가 없습니다.</div>
+      </section>
+    </main>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
